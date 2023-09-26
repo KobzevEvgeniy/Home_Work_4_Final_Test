@@ -1,5 +1,3 @@
-
-
 /**
  * Структура хэш-таблицы
  * @param <K> тип ключа
@@ -31,6 +29,7 @@ public class HashMap <K, V> {
         return buf;
     }
 
+
     //endregion
 
     //region Методы
@@ -54,6 +53,32 @@ public class HashMap <K, V> {
     private int calculateBucketIndex(K key){
         return Math.abs(key.hashCode()) % buckets.length;
     }
+
+
+    @Override
+    public String toString() {
+        StringBuilder my_colection = new StringBuilder("{");
+        for (int i=0; i<buckets.length; i++) {
+            Bucket<K, V> bucket = buckets[i];
+            if (bucket != null) {
+                Bucket.Node node = bucket.head;
+                while (node != null) {
+                    my_colection.append(String.format("\n %s : %s, ", node.value.key.toString(), node.value.value.toString()));
+                    node = node.next;
+                }
+            }
+        }
+        my_colection.replace(my_colection.length()-2, my_colection.length(), "}");
+        return my_colection.toString();
+    }
+
+
+
+
+
+
+
+
 
     //endregion
 
@@ -99,6 +124,11 @@ public class HashMap <K, V> {
          */
         private Node head;
 
+
+        public Node getNode(){
+            return head;
+        }
+
         /**
          * Узел связного списка
          */
@@ -114,7 +144,17 @@ public class HashMap <K, V> {
              */
             Entity value;
 
+            public HashMap<K, V>.Entity getValue(){
+                return (HashMap<K, V>.Entity) value;
+            }
+
+            public Node getNextNode(){
+                return next;
+            }
+
         }
+
+
 
         public V add(Entity entity){
             Node node = new Node();

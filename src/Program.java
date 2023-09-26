@@ -2,6 +2,9 @@
 
 import java.util.ArrayList;
 
+
+
+
 public class Program {
 
     public static void main(String[] args) {
@@ -31,7 +34,11 @@ public class Program {
         oldValue = hashMap.put("+79001112239", "GGGGG3");
         oldValue = hashMap.put("+79001112230", "GGGGG4");
 
-        System.out.println(hashMap);
+
+
+       //hashMap.forEach((key, value) -> System.out.println(key + " : " + value));
+        System.out.println(hashMap.toString());
+
 
 
     }
